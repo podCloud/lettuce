@@ -42,6 +42,20 @@ defmodule Lettuce.Config do
     Application.get_env(:lettuce, :silent?, false)
   end
 
+  @doc """
+  Check if BEAM should be restarted after a recompile
+
+  ## Examples:
+
+      iex> Lettuce.Config.restart_BEAM?()
+      false
+
+  """
+  @spec restart_BEAM?() :: boolean() | nil
+  def restart_BEAM?() do
+    Application.get_env(:lettuce, :restart_beam?, false)
+  end
+
   defmodule Compiler do
     @moduledoc """
     This module defines the struct of options that are accepted by the

@@ -53,6 +53,15 @@ defmodule Lettuce do
     end
 
     Compiler.run(@opts)
+
+    if Config.restart_BEAM?() do
+      unless Config.silent?() do
+        Logger.info("restarting BEAM...")
+      end
+
+      :ok = :init.restart()
+    end
+
     project_files()
   end
 
