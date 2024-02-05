@@ -13,7 +13,7 @@ defmodule Lettuce.Config do
       1000
 
   """
-  @spec refresh_time() :: String.t()
+  @spec refresh_time() :: integer()
   def refresh_time() do
     Application.get_env(:lettuce, :refresh_time, 1000)
   end
@@ -27,17 +27,17 @@ defmodule Lettuce.Config do
       ["lib"]
 
   """
-  @spec folders_to_watch() :: String.t() | nil
+  @spec folders_to_watch() :: [String.t()]
   def folders_to_watch() do
     Application.get_env(:lettuce, :folders_to_watch, ["lib"])
   end
 
   @doc """
-  Enables the output that lettuce produces for debugging purposes..
+  Check if lettuce should produces output for debugging purposes..
   This is enabled by default.
 
   """
-  @spec silent?() :: String.t() | nil
+  @spec silent?() :: boolean()
   def silent?() do
     Application.get_env(:lettuce, :silent?, false)
   end
@@ -86,8 +86,8 @@ defmodule Lettuce.Config do
 
     @doc """
     Options tries to validate the parameters defined in `config.exs`. It will
-    throw and exception if a parameter is invalid. Parsed parameters are 
-    ignored because the options are forwarded as strings to 
+    throw and exception if a parameter is invalid. Parsed parameters are
+    ignored because the options are forwarded as strings to
     `Mix.Tass.Compile.Elixir`.
 
     """
@@ -105,7 +105,7 @@ defmodule Lettuce.Config do
     expects.
 
     """
-    @spec validations() :: keyword
+    @spec validations() :: keyword()
     def validations(), do: %__MODULE__{} |> Map.from_struct() |> Map.to_list()
   end
 end
